@@ -30,6 +30,7 @@ int main(int argc, char* argv[]){
         errno_cpy = errno;
         err(3, "Cannot open the file");
     }
+    
     uint32_t x[2];
     while(read(fd1, x, sizeof(x)) == sizeof(x)){
         
