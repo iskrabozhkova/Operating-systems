@@ -1,5 +1,7 @@
-FOO=73
-BAR=42
-BAZ=
-ENABLED_OPTIONS=a b c d
-ENABLED_OPTIONS_EXTRA=e f
+
+2,quz,,foo
+4,foo,bar,baz
+12,1,3,foo
+3,foo,,
+4,foo,bar,baz
+2,quz,,foo

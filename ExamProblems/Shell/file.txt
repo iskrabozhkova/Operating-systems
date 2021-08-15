@@ -1,2 +1,4 @@
-name;type;distance;mass;volume;density;speed
-earth;T;1.00000011;1;1;5.52;29.7859
+2019-05-05 06:26:54 orthanc rsyslogd: rsyslogd was HUPed
+2019-05-06 06:30:32 orthanc rsyslogd: rsyslogd was HUPed
+2019-05-06 10:48:29 orthanc kernel: [1725379.728871] Chrome_~dThread[876]: segfault
+
