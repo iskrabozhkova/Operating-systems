@@ -1,0 +1,2 @@
+#not tested
+find /home/students -mindepth 1 -maxdepth 1 -type d -printf "%p %C@\n" 2>/dev/null | awk '$2 > 161520000 && $2 < 16161910000 {print $1}' | xargs -I {} grep ":{}:" /etc/passwd | cut -d ':' -f1,5 | cut -d ',' -f1 | cut -c 2- | tr ':' '\t'
