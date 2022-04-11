@@ -1,0 +1,1 @@
+cat ssa.txt | egrep "Array .$|physicaldrive|Temperature" | tr -s " " | sed "s/Current Temperature (C)/Current/" | sed "s/Maximum Temperature (C)/Maximum/" | awk '{if($1 == "Array"){arr=$2}if($1 == "physicaldrive"){phy=$2}if($1 == "Current:"){curr=$2}if($1 == "Maximum:"){max=$2; printf "%s-%s %s %s\n", arr, phy, curr, max}}'

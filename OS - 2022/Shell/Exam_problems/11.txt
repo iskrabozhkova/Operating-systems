@@ -1,0 +1,2 @@
+find ~velin -mindepth 1 -type f -inum $(find ~velin -mindepth 1 -type f -printf "%p %i %A@\n" 
+| sort -n -k1 -t ' ' | tail -n 1 | awk -F ' ' '{print $2}') -printf "%p %d\n" | sort -n -k2 -t ' ' | tail -n -1 | awk '{print $1}' | grep -o . | grep '/' | wc -l

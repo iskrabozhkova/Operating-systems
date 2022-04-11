@@ -1,0 +1,3 @@
+
+
+find ~s62410 -mindepth 1 -printf "%i %n %T@\n" | awk '($2 > 1)'| sort -k3 -t ' ' -nr | head -n 1 | awk '{print $1}'

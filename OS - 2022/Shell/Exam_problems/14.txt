@@ -1,0 +1,1 @@
+ find ~ -maxdepth 1 -mindepth 1 -type f -user $(whoami) -print0 | xargs -0 chmod 664 1>/dev/null

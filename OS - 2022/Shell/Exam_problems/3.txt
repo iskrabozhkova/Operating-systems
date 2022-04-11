@@ -1,0 +1,6 @@
+#a)
+find . -type f -empty | xargs rm
+find . -type f -size 0 | xargs rm
+
+#b)
+find . -type f -printf "%p %s\n" | sort -nr -k2 -t " " | head -n 5 | cut -d " " -f1 | xargs rm

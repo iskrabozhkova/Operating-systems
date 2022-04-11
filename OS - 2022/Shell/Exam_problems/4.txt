@@ -1,0 +1,1 @@
+cat file1 | egrep '^([^:]*:){4}[^ ]+ [^ ]+a(,|:)' | grep "/home/Inf" | cut -c3,4 | sort | uniq -c | head -n 1 | tr -s ' '

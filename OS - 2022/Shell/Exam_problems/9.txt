@@ -1,0 +1,1 @@
+cat file1 | tail -n +2 | egrep "^[^;]+;$(cat file1 | tail -n +2 | sort -k3,3 -t ';' -nr | head -n 1 | awk -F ';' '{print $2}');" | sort -k3,3 -n -t ';' | head -n 1 | awk -F ';' '{print $1"\t"$4}'
