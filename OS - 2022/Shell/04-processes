@@ -1,0 +1,39 @@
+--04-a-5000.txt
+ps -eo cmd= --sort=start_time | head
+
+--04-a-6000.txt
+ps -o pid=,cmd=,vsz= | sort -n -k3 -t ' ' | tail -n 1 | awk -F ' ' '{print $1, $2}'
+
+--04-a-6300.txt
+ ps -eo cmd= --sort=start_time | head -n 1
+
+--04-b-5000.txt
+ps -g root -o vsz= | awk '{count+=$1}END{print count}'
+
+--04-b-6100.txt
+ps -o user=,cmd= | grep "vim" | sort | uniq -c | tr -s ' ' | sed "s/ //" | awk '$1>=2{print $2}'
+
+04-b-6200.txt
+ #!/bin/bash
+
+ ps -e -o user= | sort | uniq | while read line; do
+ if ! ( who | tr -s ' ' | cut -d ' ' -f1 | sort | uniq); then
+         echo "$line"
+     fi
+ done
+
+04-b-7000.txt
+ps -g root -o vsz= | grep -v 0 | awk '{count+=$1}END{print count/NR}'
+
+04-b-8000.txt
+ps -e -o pid=,tty=,comm= | egrep "^[0-9 ]+ \?" | awk '{print $1, $3}' | sort | uniq
+
+04-b-9000.txt
+#!/bin/bash
+ps -e -o pid=,ppid= | while read child_pid parent_pid; do
+    count_child_children=$(ps -e -o ppid= | egrep "^\s*${child_pid}" | wc -l)
+    count_parent_children=$(ps -e -o ppid= | egrep "^\s*${parent_pid}" | wc -l)
+    if [ $count_child_children -gt $count_parent_children ]; then
+        echo "$child_pid"
+    fi
+done
