@@ -1,0 +1,196 @@
+03-a-0200.txt
+cat /etc/passwd | sort -t ":" -k 3
+
+03-a-0201.txt
+cat /etc/passwd | sort -n -t ":" -k 3
+
+03-a-0210.txt
+cat /etc/passwd | cut -d ":" -f1,5
+
+03-a-0211.txt
+cat /etc/passwd | cut -c2-6
+
+03-a-0212.txt
+cat /etc/passwd | cut -d ":" -f1,6
+
+03-a-0213.txt
+cat /etc/passwd | cut -d "/" -f2
+
+03-a-1500.txt
+cat /etc/passwd | wc -c
+cat /etc/passwd | wc -m
+cat /etc/passwd | wc -l
+
+03-a-2000.txt
+cat /etc/passwd | head -c 26 -> bytes/symbols - ?
+cat /etc/passwd | head -n -4
+cat /etc/passwd | tail -n 17
+cat /etc/passwd | head -n 151 | tail -n 1
+cat /etc/passwd | head -n 13 | tail -n 1 | rev | cut -c1-4 | rev
+
+03-a-3000.txt
+df -P > ~/df_file.txt
+cat df_file.txt | tail -n +2 | sort -n -k 2
+
+03-a-3100.txt
+cat /etc/passwd | cut -d ":" -f1 > ~/users
+
+03-a-3500.txt
+cat /etc/passwd | cut -d ":" -f1 | tr a-z A-Z
+
+03-a-5000.txt
+grep "$(whoami)" /etc/passwd
+grep -B 2 "$(whoami)" /etc/passwd
+grep -C 3 "$(whoami)" /etc/passwd | tail -n +2
+grep -B 2 "$(whoami)" /etc/passwd | head -n 1
+
+03-a-5001.txt
+grep -v "/bin/bash" /etc/passwd | wc -l
+
+03-a-5002.txt
+cat /etc/passwd | cut -d ":" -f5 | egrep "^[а-яА-Я]+ [a-яА-Я]{8,}"
+
+03-a-5003.txt
+cat /etc/passwd | cut -d ":" -f5 | egrep "^[а-яА-Я]+ [a-яА-Я]{1,7}"
+
+03-a-5004.txt
+cat /etc/passwd | egrep "x:[0-9]+:[0-9]+:([а-яА-Я]+) ([а-яА-Я]{1,7})(,|:)"
+
+03-a-6000.txt
+1) awk 'END{print NR}' emp.data
+2) awk 'NR == 3' emp.data
+3) awk '{print $3}' emp.data
+4) awk '{NR == 3} END {print $3}' emp.data
+5) awk 'NF >= 5' emp.data
+6) awk '$3 > 4{print $0}' emp.data
+7) awk '{print NF}' emp.data
+8) awk '/Beth/ {count++}END{print count}' emp.data
+9)
+10)  awk 'NF>1{print}' emp.data
+11) awk 'length>17{print}' emp.data
+12) cat emp.data | awk '{print NF, $0}'
+13) cat emp.data | awk '{print $2, $1}'
+14) cat emp.data | awk '{print $2, $1, $3}'
+15) cat emp.data | awk '{print NF, $2, $3}'
+16) cat emp.data | awk '{print $1, $3}'
+17)  cat emp.data | awk '{print $0, $2 + $3}'
+18)  cat emp.data | awk '{print $2 + $3}'
+
+03-b-0300.txt
+grep "$(whoami)" /etc/passwd | cut -d ":" -f4
+
+03-b-3400.txt
+cat /etc/services | egrep "^#" | wc -l
+
+03-b-3500.txt
+find /etc -type f -exec file {} + 2>/dev/null | grep "Shell script" | wc -l
+find . -type f -exec file {} + | grep "ASCII text" | wc -l
+
+03-b-3600.txt
+find / -maxdepth 3 2>&1 1>/dev/null | wc -l
+
+03-b-4000.txt
+wc -ml file{1,2,3}
+wc -l file{1,2,3} | tail -n 1
+
+03-b-4001.txt
+cat file2 | tr a-z A-Z > help.txt
+cat help.txt > file2
+
+03-b-4002.txt
+sed -i "s/1//g" file3
+
+03-b-4003.txt
+cat file{1,2,3} | grep -o . | sort | uniq -c | sort -nr -k 1
+
+03-b-4004.txt
+cat file{1,2,3} > new_file
+
+03-b-4005.txt
+cat file1 | tr a-z A-Z > file2
+
+03-b-5200.txt
+cat /etc/passwd | grep -o . | grep -v "a" | sort | uniq | wc -l
+
+03-b-5300.txt
+cat /etc/passwd | cut -d ":" -f5 | cut -d "," -f1 | grep -o . | sort | uniq | wc -l
+
+03-b-5400.txt
+cat /etc/passwd | grep -v "ов"
+
+03-b-6100.txt
+cat /etc/passwd | head -n 46 | tail -n +28 | cut -d ":" -f3 | rev | cut -c1
+
+03-b-6700.txt
+find /tmp -readable 2>/dev/null -printf "%p %M\n"
+
+03-b-6900.txt
+find ~ -type f -printf "%p %T@\n" 2>/dev/null | sort -nr -k2 | head -n 10 | cut -d " " -f1 | rev | cut -d "/" -f1 | rev
+find ~ -type f -printf "%p %A@\n" 2>/dev/null | sort -nr -k2 | head -n 10 | cut -d " " -f1 | rev | cut -d "/" -f1 | rev
+
+03-b-7000.txt
+find /usr/include -type f -name "*.h" -or -name "*.c" | xargs cat | wc -l
+
+03-b-7500.txt
+cat /etc/services | sed "s/\s/\n/g" | egrep -v "[^a-zA-Z]" | sed -r "/^[[:space:]]*$/d" | sort | uniq -c | sort -nr -k 1 -t ' ' | head -n 10
+
+03-b-8000.txt
+cat /srv/fmi-os/exercises/data/mypasswd.txt | grep "/home/SI" | egrep "s[0-9]+" | cut -d ":" -f1 | cut -c2- | sort -n > ~/si.txt
+
+03-b-8500.txt
+cat /etc/group | xargs -n 1 echo Hello, | sed -r "s/($(id -gn))/\1 - I am here\!/" | cut -d ':' -f1
+
+03-b-8600.txt
+find /usr -type f -name "*.sh" -exec head -n 1 {} \; | egrep "^#!" | sort | uniq -c | sort -nr | head -n 1 | tr -s " " | rev | cut -d " " -f1 | rev
+
+------03-b-8700.txt
+cat /etc/passwd | cut -d ":" -f4 | sort | uniq -c | sort -nr | head -n 5 | rev | cut -d " " -f1 | rev
+B) /etc/group -> awk ?
+
+03-b-9000.txt
+find ~ -type f -mmin -15 -printf "%f %T@\n"
+
+03-b-9050.txt
+cp /srv/fmi-os/exercises/data/population.csv ~
+
+03-b-9051.txt
+cat population.csv | egrep "^(\w+,){2}2008" | awk -F ',' 'BEGIN {count=0} {count+=$4}END{print count}'
+
+03-b-9052.txt
+cat population.csv | grep "Bulgaria" | sort -n -t ',' -k4 | tail -n 1 | cut -d ',' -f3
+
+03-b-9053.txt
+cat population.csv | grep ",2016," | sed -r "s/^(.*),.+,([0-9]+)$/\1:\2/" | sort -nr -t ':' -k2 | head -n 1 | cut -d ',' -f1
+
+03-b-9054.txt
+cat population.csv | sed -r "s/^(.*),.+,([0-9]+)$/\1:\2/" | sort -nr -t ':' -k2 | head -n 42 | tail -n 1 | cut -d ',' -f1
+
+03-b-9100.txt - ?
+cat population.csv| grep "$(cat population.csv | sed -r "s/^(.*),.+,([0-9]+)$/\1:\2/" | sort -nr -t ':' -k2 | head -n 42 | tail -n 1 | cut -d ',' -f1)" | grep ",2016," | cut -d "," -f4
+
+03-b-9101.txt
+tar -xf songs.tgz -C ~/songs
+
+03-b-9102.txt
+find ~/songs -type f -printf "%f\n" | cut -d '-' -f2 | cut -d '(' -f1 | sed "s/ //"
+
+03-b-9103.txt
+find ~/songs -type f -printf "%f\n" | cut -d '-' -f2 | cut -d '(' -f1 | sed "s/ //" | tr a-z A-Z | tr ' ' '_' | rev | sed -r "s/^_//g" | rev
+                                                                                                                                                    
+03-b-9104.txt
+find ~/songs -type f -printf "%f\n" |  sed -r "s/.*\((.*)\).ogg$/\1/" | sort -k2 -t ','
+
+03-b-9105.txt
+find ~/songs -type f -printf "%f\n" | egrep "Beatles - |Pink -" | sed -r "s/.* - (.*)\((.*)\).ogg/\1/g" | wc -l
+
+03-b-9106.txt
+find ~/songs -type f -printf "%f\n"  | cut -d '-' -f1 | sort | uniq | sed "s/ //g" | xargs mkdir
+
+03-b-9200.txt
+find . -perm $(find /etc -type f -printf "%f %s %m\n" 2>/dev/null| sort -n -k2 | tail -n 1 | cut -d " " -f3) | xargs stat
+
+03-b-9300.txt
+^([\w\d])+([-.\w\d])*@([\w\d])+([-.\w\d])* --> not true
+
+03-b-9400.txt
+cat emp.data | awk '{for(i=NF; i>=1; i--) {printf "%s ", $i} print ""}'
